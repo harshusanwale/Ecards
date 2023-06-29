@@ -62,7 +62,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Description"> Text Message <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="text_mess" name="text_mess" rows="4" cols="50"  style="  resize: none;" class="form-control col-md-7 col-xs-12">{{$messdata->text_message}}
+              <textarea id="text_mess" name="text_mess" rows="4" cols="50" class="form-control col-md-7 col-xs-12">{{$messdata->text_message}}
               </textarea>
                 <!-- <input type="text" id="last-name" name="last_name"  class="form-control col-md-7 col-xs-12"> -->
                 @if($errors->has('text_mess'))

@@ -108,7 +108,7 @@
             </div> -->
             <div class="col-md-4">
             <div class="form-group">
-              <label>Slider Image:</label><br>
+              <label>Slider Image :</label><br>
               <input type="file" id="sli_img_1" name="sli_img_1"
                   class="form-control col-md-7 col-xs-12"><br>       
                 @if($errors->has('sli_img_1'))

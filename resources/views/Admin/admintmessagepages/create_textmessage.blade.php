@@ -62,13 +62,12 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Description"> Text Message <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="text_mess" name="text_mess" rows="4" cols="50"
-               style="  resize: none;" class="form-control col-md-7 col-xs-12">
+              <textarea id="text_mess" name="text_mess" rows="4" cols="50" class="form-control col-md-7 col-xs-12">
               </textarea>
                 <!-- <input type="text" id="last-name" name="last_name"  class="form-control col-md-7 col-xs-12"> -->
                 @if($errors->has('text_mess'))
 
-              <span class="text-danger">{{$errors->first('text_mess')}}</span>
+              <span class="text-danger">{{ $errors->first('text_mess')}}</span>
 
               @endif
               </div>
@@ -95,12 +94,16 @@
               <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Message Status</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                   <select name="mess_status" id="mess_status"  class="form-control">
+
                     <option value="1" >Active</option>
+
                     <option value="0" >Inactive</option>
 
                   </select>
                   @if($errors->has('mess_status'))
+
                   <span class="text-danger">{{ $errors->first('mess_status')}}</span>
+
                   @endif
               </div>
             </div>

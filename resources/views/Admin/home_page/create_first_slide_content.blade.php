@@ -109,7 +109,7 @@ ClassicEditor
             </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Slider Description :</label>
+                                        <label>Slider Description 2:</label>
                                         <textarea id="editor1" name="slide_content_2" class="form-control" rows="10"
                                             cols="80" class="form-control"></textarea><br>
                                         @if($errors->has('slide_content_2'))

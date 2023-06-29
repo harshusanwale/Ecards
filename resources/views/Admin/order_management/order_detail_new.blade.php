@@ -63,7 +63,7 @@
     table tr th{
         background: #F4F4F4;
         font-size:15px;
-        
+        color:black;
     }
     table tr td{
         font-size:13px;
@@ -86,6 +86,12 @@
     }
     .float-right{
         float:right;
+    }
+    .brief i{
+        color:black;
+        
+        font : unset;
+        font-weight :bold;
     }
 
 </style>
@@ -196,8 +202,8 @@ function myFunction(text_id) {
         <div class="row">
             <div class="col-md-4 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_content">
-                        <h4 class="brief"><i>Order Details(#{{$orderdetail[0]->order_id}})</i></h4>
+                <h4 class="brief"><i>Order Details(#{{$orderdetail[0]->order_id}})</i></h4>
+                    <div class="x_content">                        
                         <table class="table align-middle table-row-bordered mb-0 fs-6 gy-5 min-w-300px">
                             <tbody class="fw-semibold text-gray-600">
                                 <tr>
@@ -272,7 +278,7 @@ function myFunction(text_id) {
                                             Payment Method:
                                         </div>
                                     </td>
-                                    <td class="fw-bold text-end">{{$orderdetail[0]->payment_method}}</td>
+                                    <td class="fw-bold text-end">{{$orderdetail[0]->paymethod}}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">
@@ -280,7 +286,7 @@ function myFunction(text_id) {
                                             Payment Status:
                                         </div>
                                     </td>
-                                    <td class="fw-bold text-end">{{$orderdetail[0]->pay_status}}</td>
+                                    <td class="fw-bold text-end">{{$orderdetail[0]->payment_status}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -408,6 +414,7 @@ function myFunction(text_id) {
             <th class="">Unit Price	</th>
             <th class="">Qty</th>
             <th class="">Qr Link</th>
+            <th class="">Address</th>
             <th>Predesign Text detail</th>
             
             <!-- <th class="">Subtotal</th>
@@ -433,6 +440,9 @@ function myFunction(text_id) {
             <td>{{$data->qr_image_link}}</td>
             @else
             <td>No Link</td>
+            <td><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal2"  >
+                                                 view address
+                                                </button></td>
             @endif
             @if(!empty($data->predesigned_text_id))
                                                 <td><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal"  onclick="myFunction('<?php echo $data->predesigned_text_id?>')">
@@ -523,6 +533,30 @@ function myFunction(text_id) {
     </tr> -->
   </tbody>
 </table>
+        </div>          
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Address</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+        <div class="card_text_dtl">
+        
         </div>          
         </div>
         <div class="modal-footer">

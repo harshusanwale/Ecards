@@ -22,6 +22,7 @@ class OrderController extends Controller
     $data['orderList']  = DB::table("order")
                         ->select("order.*")
                         ->leftJoin("order_details","order_details.order_id","=","order.order_id")
+                        ->where('order.status',1)
                         ->orderby('order.id','DESC')
                         ->groupBy('order.id')->get(); 
      return view("Admin.order_management.order_list")->with($data);
@@ -58,8 +59,9 @@ class OrderController extends Controller
     {
 
         $orderdetail = DB::table("order")
-                      ->select("order.*")
+                      ->select("order.*","payment_transactions.payment_method as paymethod","payment_transactions.payment_status")
                       ->leftJoin("order_details","order_details.order_id","=","order.order_id")
+                      ->leftJoin("payment_transactions","payment_transactions.order_id","=","order.order_id")
                       ->where('order.id',$id)
                       ->groupBy('order.id')
                       ->get();
@@ -76,7 +78,7 @@ class OrderController extends Controller
        $admindata = Auth::user();
     
                  
-     return view("Admin.order_management.order_detail_new",compact('orderdetail','admindata','card_details'));
+     return view("Admin.order_management.order_details",compact('orderdetail','admindata','card_details'));
     }
 
     /**
@@ -103,6 +105,12 @@ class OrderController extends Controller
         
         
         
+    }
+
+    public function getAddress(Request $request){
+        $add_id =  $request->add_id;
+        $address = DB::table("order_details")->where('id',$add_id)->first();
+       return view("Admin/order_management/get_add_data",compact('address'));
     }
 
     /**
@@ -141,6 +149,7 @@ class OrderController extends Controller
     {
         // dd( $request->get('status_id'));
         $totalFilteredRecord = $totalDataRecord = $draw_val = "";
+        
         $columns_list = array(
         0 =>'id',
         1 =>'srno',
@@ -307,7 +316,12 @@ class OrderController extends Controller
         $cancel_reason = $request->cancel_reason;
      }
 
-     $getvalue = DB::table('order')->where('order_id',$order_id)->orderby('id',"DESC")->get();
+     $getvalue = DB::table('order')
+                ->select("order.*","payment_transactions.payment_method as paymethod","payment_transactions.payment_status")
+                ->leftJoin("payment_transactions","payment_transactions.order_id","=","order.order_id")
+                ->where('order.order_id',$order_id)
+                ->orderby('order.id',"DESC")
+                ->get();
 
      $card_data = DB::table("order_details")
                         ->select("order_details.*","cards.card_title","card_sizes.card_price As price","card_sizes.card_type","card_sizes.card_size")
@@ -420,7 +434,7 @@ class OrderController extends Controller
         {
              Mail::send('Admin.email_template.orderstatus_newemail', $data, function ($message) use ($data) {
 
-                $message->from('birthday@birthdaystoreuk.co.uk','birthdaystore');
+                $message->from('birthstore@birthdaystoreuk.co.uk','birthdaystore');
 
                 $message->to($data['user_email']);
 

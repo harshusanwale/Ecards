@@ -23,6 +23,12 @@
    .order_date{
    margin-top :15px;
    }
+   tr th{
+    color:black
+   }
+   .title{
+   color:black;
+   }
    
 </style>
 @endsection
@@ -71,7 +77,7 @@
                <div class="myOrderDtelBox">
                   <div class="myOrderID project_detail">
                   <p class="title">Order ID:</p>
-                  <p>{{$paytrandata[0]->order_id}}</p>
+                  <p>{{$paytrandata[0]->order_ids}}</p>
                   
                   </div>
                   <div class="myOrderDtel project_detail">
@@ -88,16 +94,16 @@
                   <div class="myOrderstatus project_detail">
                   <p class="title order_status">Order Status:</p>
                   <p>@if($paytrandata[0]->order_status ==0) Ordered @endif
-                                        @if($paytrandata[0]->order_status ==1) In Progress @endif
-                                        @if($paytrandata[0]->order_status ==2) Cancelled @endif
-                                        @if($paytrandata[0]->order_status ==3) Order ready @endif
-                                        @if($paytrandata[0]->order_status ==4) In transit @endif
-                                        @if($paytrandata[0]->order_status ==5) Out for delivery @endif
-                                        @if($paytrandata[0]->order_status ==6) Delivered @endif
-                                        @if($paytrandata[0]->order_status ==7) Return request declined @endif </p>
+                     @if($paytrandata[0]->order_status ==1) In Progress @endif
+                     @if($paytrandata[0]->order_status ==2) Cancelled @endif
+                     @if($paytrandata[0]->order_status ==3) Order ready @endif
+                     @if($paytrandata[0]->order_status ==4) In transit @endif
+                     @if($paytrandata[0]->order_status ==5) Out for delivery @endif
+                     @if($paytrandata[0]->order_status ==6) Delivered @endif
+                     @if($paytrandata[0]->order_status ==7) Return request declined @endif</p>
                   </div>
 				  <div class="myOrderDtel order_date">
-                  <p><strong>Order Date: </strong> {{date('Y-m-d', strtotime($paytrandata[0]->created_at))}} </p>
+                  <p><strong style="color:black;">Order Date: </strong> {{date('Y-m-d', strtotime($paytrandata[0]->created_at))}} </p>
                   </div>
                   <!-- <div class="myOrderDtel">
                      <label>Order Status</label>
@@ -124,8 +130,8 @@
                         <th>Discount</th>
                         <th>Tax(%):</th>
                         <th>Total  Amount</th>
-                        <th>Payment Type</th>
-                        <!-- <th>Transaction ID</th> -->
+                        <th>Payment Method</th>
+                        <th>Transaction ID</th>
                         <th>Payment Status</th>
                      </tr>
                      <tr>
@@ -133,10 +139,10 @@
                         <td>$0.00</td>
                         <!-- <td>${{number_format($paytrandata[0]->postage_costs, 2)}}</td> -->
                         <td>$0.00</td>
-                        <td>${{number_format($paytrandata[0]->total, 2)}}</td>
-                        <td>{{$paytrandata[0]->payment_method}}</td>
-                        <!-- <td>{{$paytrandata[0]->transaction_id}}</td> -->
-                        <td style="color: green;">{{$paytrandata[0]->pay_status}}</td>
+                        <td>${{number_format($paytrandata[0]->total_amount, 2)}}</td>
+                        <td>{{$paytrandata[0]->paymethod}}</td>
+                        <td>{{$paytrandata[0]->transaction_id}}</td>
+                        <td style="color: green;">{{$paytrandata[0]->payment_status}}</td>
                      </tr>
                   </table>
                   </div>

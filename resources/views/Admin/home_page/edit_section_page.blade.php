@@ -1075,7 +1075,7 @@ CKEDITOR.replace('sec_5_con_2', {
                                                                 @if(!empty($secdata->section_3_video) && $secdata->section_3_video != null)
                                                              <video width="300" height="240" controls>
                                                              <source src="{{ asset('public/upload/home_video').'/'. $secdata->section_3_video}}" type="video/mp4">
-                                                             </video>
+                                                             </video><br>
                                                              <a href="{{route('delete-home-video',$secdata->id)}}"><i class="fa fa-times" aria-hidden="true"></i></a>
                                                              @endif
                                                             </span>

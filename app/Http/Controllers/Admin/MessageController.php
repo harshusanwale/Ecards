@@ -43,11 +43,11 @@ class MessageController extends Controller
             "mess_status" => "required", 
             // "card"       => "required"          
         ]);
-        // $card_id = null ;
+        $card_id = null ;
 
-        // if($request->card){
-        //   $card_id = $request->card; 
-        // }
+        if($request->card){
+          $card_id = $request->card; 
+        }
         
 
         if ($request->mess_status == 1) {
@@ -59,7 +59,7 @@ class MessageController extends Controller
         $textmess = new Message();
         $textmess->text_message = $request->text_mess;      
         $textmess->status = $status;
-        // $textmess->card_id =  $card_id ;
+        $textmess->card_id =  $card_id ;
         $res = $textmess->save();
 
         if($res){
@@ -111,11 +111,11 @@ class MessageController extends Controller
             "mess_status" => "required",
         ]);
         
-        // $card_id = null ;
+        $card_id = null ;
 
-        // if($request->card){
-        //   $card_id = $request->card; 
-        // } 
+        if($request->card){
+          $card_id = $request->card; 
+        } 
         
         $textmessfind = Message::find($id);
         if (empty($textmessfind)) {
@@ -129,7 +129,7 @@ class MessageController extends Controller
            
             $textmessfind->text_message = $request->text_mess ;
             $textmessfind->status = $status;
-            // $textmessfind->card_id = $card_id;
+            $textmessfind->card_id = $card_id;
             $res = $textmessfind->save();
 
             if($res){
